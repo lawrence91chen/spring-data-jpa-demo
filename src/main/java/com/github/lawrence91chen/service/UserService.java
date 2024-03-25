@@ -23,10 +23,6 @@ public class UserService {
 	}
 
 	public User insert(User user) {
-		user.setCreateBy("system");
-		user.setUpdateBy("system");
-		user.setCreateTime(new Date());
-		user.setUpdateTime(new Date());
 		return userRepository.save(user);
 	}
 
@@ -36,6 +32,9 @@ public class UserService {
 		return jpaQueryFactory.update(q)
 				.where(q.id.eq(user.getId()))
 				.set(q.password, user.getPassword())
+				// JPA Auditing 與 Querydsl 原生暫無法整合
+				.set(q.updateBy, "system")
+				.set(q.updateTime, new Date())
 				.execute();
 	}
 

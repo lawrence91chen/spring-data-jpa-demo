@@ -13,8 +13,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-@Table(name = "sys_prop")
 @Entity
+@Table(name = "sys_prop")
 public class SysProp {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
